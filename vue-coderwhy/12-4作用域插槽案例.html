@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        /* 
+            父组件替换插槽的标签,但是内容由子组件来提供
+        
+         */
+    </style>
+    <body>
+        <div id="app">
+            <cpn></cpn>
+            <hr>
+            <!-- 目的是获取子组件中的books -->
+            <cpn>
+                <template slot-scope="slot">
+                    <span v-for='(item,index) in slot.datas'>{{item}} - </span>
+                </template>
+            </cpn>
+            <hr>
+            <!-- slot-scope被 v-slot 代替 -->
+            <cpn>
+                <!-- v-slot="这里是别名,随便都行" -->
+                <template v-slot="s">
+                    <span v-for='(item,index) in s.datas'>{{item}} * </span>
+                </template>
+            </cpn>
+            <hr>
+            <cpn>
+                <!-- v-slot="这里是别名,随便都行" -->
+                <template v-slot="s">
+                    <span>{{s.datas.join('-')}} </span>
+                </template>
+            </cpn>
+        </div>
+    </body>
+    <template id="cpnC">
+        <div>
+            <!-- 这里的:data  随便命名   主要是吧子组件books传过去-->
+            <slot :datas="books">
+                <ul>
+                    <li v-for="(item,index) in books" :key="item">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"你好啊"
+            },
+            components: {
+                cpn:{
+                    template:"#cpnC",
+                    data () {
+                        return {
+                            books:['西游记','三国演义','水浒传','红楼梦']
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</html> 

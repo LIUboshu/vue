@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div class="btnParent" @click="clickParent">
+				<!-- @click.stop 阻止事件冒泡 -->
+				<!-- .stop修饰符  阻止冒泡事件向上传递 -->
+				<button type="button" @click.stop="clickEvent">按钮</button>
+			</div>
+			<form action="" method="post">
+				<!-- 绑定输入框回车事件 -->
+				<input type="text" @keydown.enter="searchWeather" name="" v-model="city" id="" value="" />
+				<!-- 阻止默认事件 -->
+				<input @click.prevent="searchWeather" type="submit" value="提交"/>
+			</form>
+			<hr >
+			<h1>只触发一次修饰符</h1>
+			<button type="button" @click.once="onceEvent">按钮</button>
+			<hr >
+			<button type="button" @click.ctrl.exact="ctrlEvent">按住ctrl加点击才可以触发</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				city:"濮阳"
+			},
+			methods:{
+				clickEvent:function(){
+					alert("clickEvent");
+				},
+				clickParent:function(){
+					alert("clickParent");
+				},
+				searchWeather:function(){
+					alert("查询天气");
+					alert(this.city);
+				},
+				onceEvent:function(){
+					alert("只触发一次");
+				},
+				ctrlEvent:function(){
+					alert("按住ctrl + 点击才可以触发");
+					console.log("按住ctrl + 点击才可以触发");
+				}
+			}
+		})
+	</script>
+</html>

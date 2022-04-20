@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <!-- 静态属性   school-name驼峰命名法会报错-->
+                <school school-name="清华北大"></school>
+                <!-- 动态属性 -->
+                <!-- 上海交大需要加引号''   不加引号以为是变量名  加上引号就是字符串 -->
+                <school :school-name="'上海交大'"></school>
+                <!-- 动态属性 -->
+                <school :school-name="schoolList[0]"></school>
+                <!-- 循环传值组件   :key="里面加字符串为了是独一无二的值"  key是拿不到的  key给vue用来计算的-->
+                <school v-for="(item,index) in schoolList" :key="'abc'+index" :index="index" :school-name="item"></school>
+            </ul>
+        </div>
+    </body>
+    <script>
+        Vue.component("school",{
+            props: ['schoolName','index'],
+            template:`<li>
+                    <h3>{{index}}--学校:{{ schoolName }}</h3>
+                </li>`
+        })
+        let app = new Vue({
+            el:"#app",
+            data:{
+                schoolList:[
+                    "小学","中学","高中","大学"
+                ]
+            }
+        })
+    </script>
+</html>

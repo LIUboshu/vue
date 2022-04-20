@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ msg }}</h1>
+            <h2>{{ num }}</h2>
+            <child-element></child-element>
+        </div>
+    </body>
+    <script>
+        let options = {
+            data:{
+                num:100,
+                msg:"ahahah"// 这里的msg不会覆盖原生的msg  混入的不会被放进去
+            },
+            create () {
+                console.log("vue生命周期create");
+            },
+            beforeMount () {
+                console.log("vue生命周期挂载前beforeMount");
+            },
+            mounted () {
+                console.log("vue生命周期 挂载后mounted")
+            }
+        }
+
+
+        let options1 = {
+            data:function(){
+                // 务必返回对象
+                return {
+                    msg:"HAHAHA"
+                }
+            },
+            create () {
+                console.log("vue生命周期create");
+            },
+            beforeMount () {
+                console.log("vue生命周期挂载前beforeMount");
+            },
+            mounted () {
+                console.log("vue生命周期 挂载后mounted")
+            }
+        }
+        // 组件里面也可以用混入的模式
+        Vue.component('child-element',{
+            template:'<div>{{ msg }}</div>',
+            mixins:[options1]
+        })
+
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"hello world"
+            },
+            // mixins 混合
+            // 混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。
+            mixins:[options]
+        })
+    </script>
+</html>

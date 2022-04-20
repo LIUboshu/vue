@@ -1,0 +1,97 @@
+
+//<link rel="stylesheet/less" type="text/css" href="styles.less" />
+//<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js" ></script>
+
+// 设置变量 @
+@main-color:#ff6700;
+.bgColor{
+    background-color: @main-color;
+}
+.button{
+    background-color: @main-color;
+}
+
+// 混合使用
+.xk{
+    width: 400px;
+    height: 100px;
+    border: 1px solid #ccc;
+}
+.box{
+    .xk;
+    background-color: @main-color;
+}
+
+// 传参   有()会认为是函数   编译后不会显示
+.lcButton(@bgcolor){
+    .xk;
+    background-color: @bgcolor;
+}
+.redLcButton{
+    // .lcButton(pink);
+    .lcButton(@main-color);
+    text-align: center;
+    line-height: 100px;
+}
+
+// 默认参数
+.xxButton(@bg:#ccc){
+    .xk;
+    background-color: @bg;
+}
+.ccbutton{
+    // .xxButton();// 上面不传参代表默认值
+    .xxButton(green);
+}
+
+// 运算
+@small-width:10px;
+.small{
+    width: 20 * @small-width;
+    height: 200px;
+    background-color: @main-color;
+}
+
+//嵌套
+.todo{
+    width: 100px;
+    height: 100px;
+    h1{
+        width: 10px;
+        height: 10px;
+    }
+    .item{
+        line-height: 10px;
+        height: 10px;
+        img{
+            width: 5px;
+            height: 5px;
+        }
+    }
+}
+
+// arguments变量
+.borderStyle(@width:10px,@style:solid,@color:#ccc){
+    border: @arguments;
+}
+.lcbox{
+    .borderStyle();
+}
+.bgbox{
+    .borderStyle(20px,dash);// 自动拼接
+}
+
+/* 注释的内容  编译后显示*/
+//  // 编译后不显示
+
+// 慎用 !important
+.bgbox{
+    .borderStyle(20px,dash)!important;
+}
+
+
+// 不进行编译  ~ 字符串前加波浪线
+.bgbox{
+    .borderStyle(20px,dash);
+    background: ~'@main-color';// 不进行编译
+}

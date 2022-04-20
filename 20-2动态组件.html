@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div id="content">
+				<!-- :is特性——就是有些元素内部不能使用自定义标签或者自定义标签内也不能放某些特殊的标签，这时候就要用is代替一下，让html语法符合规则验证。is属于指定要在内部使用的标签。 -->
+				<!-- <component :is="组件名变量"></component> -->
+				<!-- 只要在data里弄个变量，给变量赋值就能动态的切换组件。这个其实在某些场景还是非常好用的安利一下。 -->
+				<component :is="com"></component>
+			</div>
+			<button @click="chooseContent(1)">首页</button>
+			<button @click="chooseContent(2)">列表</button>
+			<button @click="chooseContent(3)">新闻</button>
+			<button @click="chooseContent(4)">个人</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		let com1 = Vue.component('index-com',{
+			name:'index',
+			template:`<h1>首页内容</h1>`
+		})
+		let com2 = Vue.component('list-com',{
+			template:`<h1>列表内容</h1>`
+		})
+		let com3 = Vue.component('news-com',{
+			template:`<h1>新闻内容</h1>`
+		})
+		let com4 = Vue.component('me-com',{
+			template:`<h1>个人内容</h1>`
+		})
+		let app = new Vue({
+			el:"#app",
+			data:{
+				//只要在data里弄个变量，给变量赋值就能动态的切换组件。
+				com:com1
+			},
+			methods:{
+				chooseContent:function(id){
+					console.log(this);
+					console.log(id);
+					// 通过获取id,选择注册好的组件
+					this.com = this.$options.components['com' + id];
+				}
+			},
+			components:{
+				com1,com2,com3,com4
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="vm">
+            <h1>{{ msg }}</h1>
+            <h1 :class="className">类名绑定</h1>
+        </div>
+    </body>
+    <script>
+        /* 
+        生命周期
+            1.创建vue实例  new Vue({});
+            2.初始化 事件&生命周期    beforeCreate () {} 创建视图之前
+            3.初始化 注入&校验(数据的校验)      created () {}   创建
+            4.是否指定"el"选项  electmion(元素)这里开始绑定
+            5.是否指定模板选项  渲染模板
+            6.渲染之前  beforeMount () {}  挂载之前
+            7.渲染之后  mounted () {}   渲染完毕   挂载后
+                当data被修改时:
+                    beforeUpdate(){}  更新之前
+                        虚拟dom重新渲染并应用更新
+                    updated(){}       更新后
+            8.销毁之前  beforeDestroy () {}
+            9.销毁      destroyed () {}
+        */
+        var vm = new Vue({
+            el:'#vm',
+            data:{
+                msg:"hello Vue",
+                className:"redBg"
+            },
+            // 创建之前
+            beforeCreate () {
+                console.log("beforeCreate");
+                // console.log(this);
+                // console.log(this.msg);//刚开始实例化 msg数据还没有绑定 undefined
+                // console.log(this.clickEvent);// 事件在此时也没有绑定  undefined
+
+                //此时数据data和事件方法methods还未绑定到vm对象上
+            },
+            created () {
+                console.log("create");
+                // console.log(this);
+                // console.log(this.msg);//hello Vue
+                // console.log(this.clickEvent);//(){console.log("点击事件");}
+
+                // 此时数据data和方法methods绑定到应用对象vm上
+            },
+            // 渲染之前(挂载之前)
+            beforeMount () {
+                console.log("beforeMount");
+                let redH1 = document.querySelector(".redBg");
+                console.log(redH1);// null
+
+                // 渲染之前,根据数据生成的DOM对象是获取不到的
+            },
+            // 渲染之后
+            mounted () {
+                console.log("mounted");
+                let redH1 = document.querySelector(".redBg");
+                console.log(redH1);//  <h1 class="redBg">类名绑定</h1>
+
+                // 渲染之后,可以获取数据生成的dom对象
+            },
+            methods: {
+                clickEvent:function(){
+                    console.log("点击事件");
+                }
+            },
+            // 更新之前
+            beforeUpdate () {
+                // 数据更改,但内容未更改之前
+                console.log("beforeUpdate");
+            },
+            // 更新后
+            updated () {
+                // 内容已更新完毕
+                console.log("update");
+            },
+            // 应用销毁之前
+            beforeDestroy () {
+                console.log("beforeDestroy");
+            },
+            // 应用销毁之后
+            destroyed () {
+                console.log("destroyed");
+            }
+
+        })    
+    </script>
+</html>

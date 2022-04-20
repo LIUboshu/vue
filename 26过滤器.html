@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>过滤器</h1>
+            <h1>{{ msg | mymsg }}</h1>
+        </div>
+    </body>
+    <script>
+        // 过滤器消耗性能比较大
+        Vue.filter('mymsg',function(val){
+            console.log(val);
+            return val.split('').reverse().join('');
+        })
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:'hello vue'
+            }
+            // ,filters:{
+
+            // }
+        })
+    </script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="app">
+            <h2>总价格:{{FullPrice}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app", 
+            data:{
+                books:[
+                    {id:1,name:"javascipt",price:90},
+                    {id:2,name:"html",price:80},
+                    {id:3,name:"vue",price:70},
+                    {id:4,name:"css",price:20}
+                ]
+            },
+            computed: {
+              // computed 的方法只被调用了一次，即便是多处多次调用，computed 也只被调用一次，这就是 computed 缓存的优势
+              FullPrice:function(){
+                let num = 0;
+                for (let i = 0; i < this.books.length; i++) {
+                    console.log(this.books[i].price);
+                    num += this.books[i].price;
+                }
+                return num;
+
+                /* for (const i in this.books) {
+                    console.log(this.books[i].price)
+                } */
+
+                /* for (const item of this.books) {
+                    console.log(item.price)
+                } */
+              }  
+
+              // for in是遍历键名，for of是遍历键值
+            },
+            methods: {
+                // 调用几次执行几次   methods是没有缓存的
+            }
+        })
+    </script>
+</html>

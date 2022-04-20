@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="app">
+            <!-- <h2 :style="{key(属性名):value(属性值)}">{{msg}}</h2> -->
+
+            <!-- 这里的{fontSize:'50px'}  50px  必须加引号'' 否则会当做变量去解析-->
+            <h2 :style="{fontSize:'50px'}">{{msg}}</h2>
+            <!-- finalSize当做变量  -->
+            <h2 :style="{fontSize:finalSize}">{{msg}}</h2>
+            <h2 :style="{fontSize:size + 'px',color:finalColor}">{{msg}}</h2>
+
+            <h2 :style="getColor()">{{msg}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"你好啊",
+                finalSize:'100px',
+                size:90,
+                finalColor:"red"
+            },
+            methods: {
+                getColor:function(){
+                    return {fontSize:this.size + 'px',color:this.finalColor}
+                }
+            }
+        })
+    </script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="app">
+            <h2 :style="[bastColor,bastStyle]">{{msg}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"你好啊",
+                bastColor:{backgroundColor:"red"},
+                bastStyle:{fontSize:"70px"}
+            }
+            
+        })
+    </script>
+</html>

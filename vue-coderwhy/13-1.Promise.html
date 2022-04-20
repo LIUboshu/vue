@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    <script type="text/javascript">
+
+    /* 
+        参数->函数(resolve,reject)
+        resolve,reject本身就是函数
+
+        链式调用  链式编程
+
+        解决回调地狱
+    */
+    	/* new Promise((resolve,reject)=>{
+            // 第一次网络请求
+            setTimeout(()=>{
+                resolve();// 这里调用resolve就会来到then这个函数
+            },1000);
+        }).then(()=>{
+            // 第一次拿到结果的处理代码
+            console.log("hello  vue");
+            console.log("hello  vue");
+            console.log("hello  vue");
+            console.log("hello  vue");
+            console.log("hello  vue");
+            return new Promise((resolve,reject)=>{
+                // 第二次网络请求
+                setTimeout(()=>{
+                    resolve();
+                },1000)
+            })
+        }).then(()=>{
+            // 第二次拿到结果的处理代码
+            console.log('hello  promise');
+            console.log('hello  promise');
+            console.log('hello  promise');
+            console.log('hello  promise');
+            console.log('hello  promise');
+            return new Promise((resolve,reject)=>{
+                //  第三次网络请求
+                setTimeout(()=>{
+                    resolve();
+                },1000)
+            })
+        }).then(()=>{
+            // 第三次处理的处理代码
+            console.log('hello  es6');
+            console.log('hello  es6');
+            console.log('hello  es6');
+            console.log('hello  es6');
+            console.log('hello  es6');
+            console.log('hello  es6');
+        }) */
+
+
+        // 什么情况下用到promise?
+        // 一般情况下有异步操作时,使用promise对这个异步操作进行封装
+
+        // new -> 构造函数(1保存一些状态信息,2执行传入的函数)
+        // 在执行传入的回调函数,会传入两个参数, resolve,reject  本身又是函数
+        new Promise((resolve,reject)=>{
+            // 这里写网络请求
+            setTimeout(()=>{
+                // 成功的时候调用resolve
+                resolve("data这里是请求的数据");
+
+                // 失败的时候太哦用
+                // reject("失败的回调");// 调用reject会走catch函数
+            },1000)
+        }).then((data)=>{ 
+            // 这里处理代码
+            console.log(data);
+        }).catch((err)=>{
+            // 调用reject会走catch函数
+            console.log(err);
+        })
+
+
+        //  sync 同步
+        //  async  异步
+        // 异步操作之后会有三种状态
+        //  pending:等待状态,比如正在进行网络请求或者定时器没有到时间
+        //  fulfill:满足状态.当我们主动回调了resolve时,就处于改状态,并且会回调then()
+        //  reject:拒绝状态.当我们主动回调了reject时,就处于该状态,并且会回调catch()
+
+
+        // 另外一种写法
+        new Promise(function(resolve,reject){
+            setTimeout(()=>{
+                
+                /* // resolve   对象状态就变成成功
+                let data = "数据库中的用户数据";
+                resolve(data);// 这里调用resolve函数   接下来会调用then */
+               
+
+                // 数据发生错误  
+                let err = "数据读取错误";
+                reject(err); 
+            },1000)
+        }).then((value)=>{
+            // 成功的形参叫做value
+            console.log(value);// 数据库中的用户数据
+        },(reason)=>{// 这里的then里面传了两个函数以(,)隔开
+            // 失败的形参叫做reason
+            console.error(reason);//数据读取错误
+        });
+    </script>
+</html>

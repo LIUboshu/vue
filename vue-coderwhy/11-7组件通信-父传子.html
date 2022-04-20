@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        
+    </style>
+    <body>
+        <div id="app">
+            <cpn :cmsg="msg" :cbook="book"></cpn>
+        </div>
+    </body>
+
+
+    <template id="cpnC">
+        <div>
+            <ul>
+                <li v-for="(item,index) in cbook" :key="item">
+                    {{item}}
+                </li>
+            </ul>
+            <p>{{cmsg}}</p>
+        </div>
+    </template>
+
+
+
+    <script>
+        // 父传子 props
+        const cpn = {
+            template:"#cpnC",
+            // 数组的写法
+            // props: ['cmsg','cbook']  //这里的字符串是变量
+
+            // 对象的写法
+            props: {
+                // 1.类型的限制
+                // cmsg:String,
+                // cbook:Array
+
+                // 2.提供一下默认值  以及必传值
+                cmsg:{
+                    type:String,
+                    default:"aaaaa",// 默认值,默认值在没有传值的时候显示
+                    required:true  //如果写上required代表是必传,不传会标错
+                },
+                // 类型是对象或者数组时,默认值必须是一个函数
+                cbook:{
+                    type:Array,
+                    // 类型是对象或者数组时,默认值必须是一个函数
+                    default(){  // 默认值  必须是函数
+                        return[] // 必须 return
+                    }
+                }
+            }
+        }
+        let app = new Vue({
+            el:"#app",
+            data:{ 
+                 
+
+                 
+                msg:"四大名著",
+                book:["西游记","红楼梦","三国演义","水浒传"]
+            },
+            components: {
+                cpn
+            }
+        })
+    </script>
+
+    <!-- props数据验证    例子-->
+    <script>
+        Vue.component("my-component",{
+            props:{
+                // 基础的类型检查(null,匹配任何类型)
+                propsA: Number,
+                // 多个可能的类型
+                propsB: [String,Number],
+                // 必填的字符串
+                propsC: {
+                    type:String,
+                    required:true
+                },
+                // 默认值带有数字
+                propsD:{
+                    type:Number,
+                    default:111
+                },
+                // 带有默认值的对象
+                propsE: {
+                    type:Object,
+                    // 对象或数组默认值必须从一个工厂函数获取
+                    default(){
+                        return{
+                            msg:"hello"
+                        }
+                    }
+                },
+                // 自定义验证函数
+                propsF:{
+                    vaildator (value) {
+                        // 这个值必须匹配下列字符串中的一个
+                        return ["success","warning","danger"].indexOf(value) !== -1
+                    }
+                }
+            }
+        })
+    </script>
+</html>

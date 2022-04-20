@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!-- clickEvent(index,item)  传入的参数是什么得到的就是什么参数值 -->
+				<!-- 如果还想得到事件对象 event   传入$event -->
+				<li v-for="item,index in stars" @click="clickEvent(index,item,$event)">
+					索引值:{{ index }}---名字:{{ item }}
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				stars:['钢铁侠','绿巨人','孙悟空']
+			},
+			methods:{
+				clickEvent:function(index,item,event){
+					console.log(index);
+					console.log(item);
+					console.log(event);
+				}
+			}
+		})
+	</script>
+</html>

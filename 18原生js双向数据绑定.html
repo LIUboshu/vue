@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input id="name" type="text">
+        <h3></h3>
+
+        <input type="text" id="myInput">
+        <p id="demo"></p>
+
+        <p id="btn">按钮</p>
+    </body>
+    <script>
+        let inp = document.querySelector("#name");
+        inp.oninput = function(){
+            document.querySelector("h3").innerHTML = inp.value;
+        }
+
+            
+        var x = document.getElementById("myInput");
+        x.oninput = function(ev){
+            let e = ev || window.event;
+            console.log(e.target.value);
+            document.getElementById("demo").innerHTML = x.value;
+        }
+        
+
+        let btn = document.getElementById("btn");
+        btn.onclick = (ev) =>{
+            let e = ev || window.event;
+            console.log(e.target);
+        }
+    </script>
+</html>

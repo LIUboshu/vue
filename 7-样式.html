@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./lib/vue.js"></script>
+        <style>
+            .page{
+                width: 200px;
+                height: 200px;
+            }
+            .active{
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <div class="page"></div> -->
+            <!-- :class="{属性:变量}"" -->
+            <!-- 通过对象的方法决定是否存在某个类 -->
+            <div class="page" :class="{active:isTrue}"></div>
+            <!-- 直接放置一个对象 -->
+            <div class="page" :class="styleObj"></div>
+            <!-- 放置数组的方式 -->
+            <div class="page" :class="styleArr"></div>
+            <!-- 放置字符串 -->
+            <div class="page" :class="styleStr"></div>
+            <!-- 数组和对象混合使用 -->
+            <div class="page" :class="styleArrObj"></div>
+        </div>
+    </body>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                isTrue:true,
+                // col-lg-6  有横杠的时候一定要加引号
+                styleObj:{active:true,haha:true,"col-lg-6":true},
+                // 可直接用数组的方式进行添加和删除
+                styleArr:["col-xs-12","red-bg"],
+                styleStr:"abc cbd efg",  // 字符串方式添加class  和   原有的class进行拼接
+                styleArrObj:["abc",{active:true}]   //对象设置true的时候会把active添加到class里面,如果将active设置为false  active不在class里面添加
+            },
+            methods: {
+                
+            },
+            computed: {
+                
+            },
+            watch: {
+                
+            }
+        })
+    </script>
+</html>

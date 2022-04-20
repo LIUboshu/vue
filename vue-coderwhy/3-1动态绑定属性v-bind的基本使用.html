@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <!-- v-bind 动态绑定属性 -->
+            <img v-bind:src="imgUrl" alt="">
+            <a v-bind:href="hrefUrl">百度一下</a>
+
+            <!-- v-bind  语法糖  : -->
+            <img :src="imgUrl" alt="">
+            <a :href="hrefUrl">百度一下</a>
+
+            <h1 :class="{active:true}">{{msg}}</h1>
+            <!-- <h1 :class={类名1:true,类名2:true}></h1> -->
+            <h1 :class="{active:isactive,line:isline}">{{msg}}</h1>
+            <!-- 这里的函数必须加() -->
+            <h1 :class="getclass()">{{msg}}</h1>
+            <button @click="btnclick">变颜色</button>
+
+
+
+            <!-- 对象方法
+            -最简单的绑定（这里的active加不加单引号都可以，以下也一样都能渲染）
+
+            :class="{ 'active': isActive }"
+            判断是否绑定一个active
+
+            :class="{'active':isActive==-1}"  或者
+            :class="{'active':isActive==index}" -->
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                imgUrl:"https://t7.baidu.com/it/u=2960892132,4277005383&fm=193",
+                hrefUrl:"https://www.baidu.com/",
+                msg:"你好啊",
+                isactive:true,
+                isline:true
+            },
+            methods: {
+                btnclick:function(){
+                    this.isactive = !this.isactive;
+                },
+                getclass:function(){
+                    return {active:this.isactive,line:this.isline}
+                }
+            }
+        })
+    </script>
+</html>

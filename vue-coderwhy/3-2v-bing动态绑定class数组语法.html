@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <!-- :class=['字符串1','字符串2'] -->
+            <h1 class="title" :class="['active','line']">{{msg}}</h1>
+            <!-- :class=['变量1','变量2'] -->
+            <h1 class="title" :class="[active,line]">{{msg}}</h1>
+
+            <h1 class="title" :class="getClass()">{{msg}}</h1>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"你好啊",
+                active:'aaaaa',
+                line:'bbbb'
+            },
+            methods: {
+                getClass:function(){
+                    return [this.active,this.line]
+                }
+            }
+        })
+    </script>
+</html>

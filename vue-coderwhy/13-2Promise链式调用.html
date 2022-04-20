@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    <script type="text/javascript">
+        // 第一种链式
+        /* 
+        new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('aaa');
+            },1000)
+        }).then((res)=>{
+            console.log(res + '第一层');
+            return new Promise((resolve,reject)=>{
+                resolve(res + 111);
+            })
+        }).then((res)=>{
+            console.log(res+'第二层');
+            return new Promise((resolve,reject)=>{
+                resolve(res + 222);
+            })
+        }).then((res)=>{
+            console.log(res + "第三层");
+        })
+        */
+
+
+        // 第二种 链式   简写
+        new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('aaa');
+            },1000)
+        }).then((res)=>{
+            console.log(res + '第一层');
+            return Promise.resolve(res + 111);
+        }).then((res)=>{
+            console.log(res+'第二层');
+            return Promise.resolve(res + 222);
+        }).then((res)=>{
+            console.log(res + "第三层");
+        })
+
+
+        // 第三种 链式  简写  省略 Promise.resolve
+        new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('aaa');
+            },1000)
+        }).then( res =>{
+            console.log(res + '第一层');
+            return res + 111;
+        }).then( res =>{
+            console.log(res+'第二层');
+            return res + 222;
+        }).then( res =>{
+            console.log(res + "第三层");
+        })
+
+        // 中间调用reject
+        new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('aaa');
+            },1000)
+        }).then( res =>{
+            console.log(res + '第一层');
+
+            // return Promise.reject("error msg");// 这里调用reject
+            throw('error msg');// 手动 抛出异常
+        }).then( res =>{
+            console.log(res+'第二层');
+            return res + 222;
+        }).then( res =>{
+            console.log(res + "第三层");
+        }).catch( err => {
+            console.log(err);
+        })
+    </script>
+</html>

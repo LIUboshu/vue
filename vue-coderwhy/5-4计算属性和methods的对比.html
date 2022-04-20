@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="app">
+            <!-- 通过computed -->
+            <h2>{{FullName}}</h2>
+            <h2>{{FullName}}</h2>
+            <h2>{{FullName}}</h2>
+            <h2>{{FullName}}</h2>
+
+            <!-- 通过methods -->
+            <h2>{{getFullName()}}</h2>
+            <h2>{{getFullName()}}</h2>
+            <h2>{{getFullName()}}</h2>
+            <h2>{{getFullName()}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                firstName:"勒布朗",
+                lastName:"詹姆斯"
+            },
+            computed: {
+                FullName:function(){
+                    console.log("FullName");// 打印了1次   计算属性做了缓存  性能更好
+                    return this.firstName + "  " + this.lastName;
+                }
+            },
+            methods: {
+                getFullName:function(){
+                    console.log("getFullName");//  打印了4次
+                    return this.firstName + "  " + this.lastName;
+                }
+            }
+            
+        })
+    </script>
+</html>

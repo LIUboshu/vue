@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>单行文本输入框</h1>
+			<!-- lazy修饰符   在“change”时而非“input”时更新 -->
+			<!-- 不加lazy  实时绑定 -->
+			<!-- 如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符 -->
+			<input type="text" name="username" v-model.lazy.trim="username" value="" />
+			<p>{{ username }}</p>
+			<h1>多行文本输入框</h1>
+			<textarea v-model="username" rows="" cols=""></textarea>
+			<hr >
+			<h1>复选框:选择喜欢的水果</h1>
+			<p v-for="item,index in fruits">
+				{{ item }}
+				<input type="checkbox" v-model="checkFruits" :value="item" />
+			</p>
+			<h2>{{ checkFruits }}</h2>
+			<hr >
+			<h1>单选框:选择最喜欢的水果</h1>
+			<span v-for="item,index in fruits">
+				{{ item }}
+				<input type="radio" v-model="radioFruits" :value="item" />
+			</span>
+			<h2>{{ radioFruits }}</h2>
+			<hr >
+			<h1>选项框:选择居住的城市</h1>
+			<select v-model="chooseCity">
+				<option disabled value="">请选择</option>
+				<option v-for="item,index in citys" :value="item">{{ item }}</option>
+			</select>
+			<h3>{{ chooseCity }}</h3>
+			<hr >
+			<h1>选项框:选择喜欢的城市</h1>
+			<select v-model="moreCity" multiple>
+				<option v-for="item,index in citys" :value="item">{{ item }}</option>
+			</select>
+			<h3>{{ moreCity }}</h3>
+			<hr >
+			<h1>将字符串变为数字获取</h1>
+			<!-- 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符 -->
+			<input type="text" name="age" v-model.number="age" value="" />
+		</div>
+	</body>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				username:"钢铁侠",
+				fruits:['苹果','香蕉','葡萄','芒果'],
+				checkFruits:[],
+				radioFruits:"",
+				citys:['北京','上海','广州','深圳'],
+				chooseCity:'',
+				moreCity:[],
+				age:16
+			},
+			watch:{
+				age:function(val){
+					console.log(val);
+				}
+			}
+		})
+	</script>
+</html>

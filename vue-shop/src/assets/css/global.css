@@ -1,0 +1,22 @@
+@import'./normalize.css';
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-width: 1366px;
+}
+.el-breadcrumb{
+	margin-bottom: 15px;
+	font-size:12px;
+}
+.el-card{
+	box-shadow:01px 1px rgba(0,0,0,0.15);
+}
+.el-step_title{
+    font-size: 13px;
+}
+.ql-editor{
+    min-height: 300px;
+}

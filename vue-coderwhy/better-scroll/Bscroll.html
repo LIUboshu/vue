@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .wrapper{
+                height: 200px;
+                background-color: red;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div class="wrapper">
+                <ul class="center">
+                    <li>列表数量1</li>
+                    <li>列表数量2</li>
+                    <li>列表数量3</li>
+                    <li>列表数量4</li>
+                    <li>列表数量5</li>
+                    <li>列表数量6</li>
+                    <li>列表数量7</li>
+                    <li>列表数量8</li>
+                    <li>列表数量9</li>
+                    <li>列表数量10</li>
+                    <li>列表数量11</li>
+                    <li>列表数量12</li>
+                    <li>列表数量13</li>
+                    <li>列表数量14</li>
+                    <li>列表数量15</li>
+                    <li>列表数量16</li>
+                    <li>列表数量17</li>
+                    <li>列表数量18</li>
+                    <li>列表数量19</li>
+                    <li>列表数量20</li>
+                    <li>列表数量21</li>
+                    <li>列表数量22</li>
+                    <li>列表数量23</li>
+                    <li>列表数量24</li>
+                    <li>列表数量25</li>
+                    <li>列表数量26</li>
+                    <li>列表数量27</li>
+                    <li>列表数量28</li>
+                    <li>列表数量29</li>
+                    <li>列表数量30</li>
+                    <li>列表数量31</li>
+                    <li>列表数量32</li>
+                    <li>列表数量33</li>
+                    <li>列表数量34</li>
+                    <li>列表数量35</li>
+                    <li>列表数量36</li>
+                    <li>列表数量37</li>
+                    <li>列表数量38</li>
+                    <li>列表数量39</li>
+                    <li>列表数量40</li>
+                    <li>列表数量41</li>
+                    <li>列表数量42</li>
+                    <li>列表数量43</li>
+                    <li>列表数量44</li>
+                    <li>列表数量45</li>
+                    <li>列表数量46</li>
+                    <li>列表数量47</li>
+                    <li>列表数量48</li>
+                    <li>列表数量49</li>
+                    <li>列表数量50</li>
+                    <li>列表数量51</li>
+                    <li>列表数量52</li>
+                    <li>列表数量53</li>
+                    <li>列表数量54</li>
+                    <li>列表数量55</li>
+                    <li>列表数量56</li>
+                    <li>列表数量57</li>
+                    <li>列表数量58</li>
+                    <li>列表数量59</li>
+                    <li>列表数量60</li>
+                    <li>列表数量61</li>
+                    <li>列表数量62</li>
+                    <li>列表数量63</li>
+                    <li>列表数量64</li>
+                    <li>列表数量65</li>
+                    <li>列表数量66</li>
+                    <li>列表数量67</li>
+                    <li>列表数量68</li>
+                    <li>列表数量69</li>
+                    <li>列表数量70</li>
+                    <li>列表数量71</li>
+                    <li>列表数量72</li>
+                    <li>列表数量73</li>
+                    <li>列表数量74</li>
+                    <li>列表数量75</li>
+                    <li>列表数量76</li>
+                    <li>列表数量77</li>
+                    <li>列表数量78</li>
+                    <li>列表数量79</li>
+                    <li>列表数量80</li>
+                    <li>列表数量81</li>
+                    <li>列表数量82</li>
+                    <li>列表数量83</li>
+                    <li>列表数量84</li>
+                    <li>列表数量85</li>
+                    <li>列表数量86</li>
+                    <li>列表数量87</li>
+                    <li>列表数量88</li>
+                    <li>列表数量89</li>
+                    <li>列表数量90</li>
+                    <li>列表数量91</li>
+                    <li>列表数量92</li>
+                    <li>列表数量93</li>
+                    <li>列表数量94</li>
+                    <li>列表数量95</li>
+                    <li>列表数量96</li>
+                    <li>列表数量97</li>
+                    <li>列表数量98</li>
+                    <li>列表数量99</li>
+                    <li>列表数量100</li>
+                </ul>
+            </div>
+        </div>
+       
+    </body>
+    <script src="./bscroll.js"></script>
+    <script>
+        /* 
+            默认情况下BScroll食补可以实时监听滚动位置
+
+            probeType
+                0 是不侦测实时的位置
+                1 是下拉时侦测
+                2 在手指滚动的过程中侦测,手指离开后的惯性滚动过程中不侦测
+                3 只要是滚动都侦测
+        */
+        const bs = new BScroll(document.querySelector('.wrapper'),{
+            probeType:3,
+            pullUpLoad:true     // 上拉加载
+        });
+        bs.on('scroll',function(position){ // 实时位置
+            // console.log(position);
+        })
+        bs.on('pullingUp',function(){   // 上拉加载
+            console.log('上拉加载更多');// 只能打印一次
+            // 在这里发送网络请求  加载更多页面数据
+
+            // bs.finishPullUp();
+
+            setInterval(function(){
+                bs.finishPullUp(); //添加finishPullUp方法后  就会重新加载更多   这里为了不让加载的过于频繁加了定时器
+            },2000)
+        })
+    </script>
+</html>

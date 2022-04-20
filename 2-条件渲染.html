@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <button @click='handleClick()'>click按钮</button>
+            <div v-if="isCreated">动态创建和删除---if分支</div>
+            <!-- v-if和v-else中间不能有其他元素 -->
+            <div v-else>动态创建和删除---else分支</div>
+            <ul v-if="datalist.length">
+                <li v-for="data in datalist">
+                    {{data}}
+                </li>
+            </ul>
+            <div v-else>空空如也</div>
+
+
+            <div v-if="which === 1">11111111</div>
+            <div v-else-if="which === 2">222222</div>
+            <div v-else>33333333</div>
+            <h3 v-for="item in user">
+                {{ item.name }}
+                {{ item.age }}
+                {{ item.bir }}
+            </h3>
+            <hr>
+            <div v-show="isShow">
+                hello Vue
+            </div>
+            <button @click="showPane">切换显示内容</button>
+        </div>
+    </body>
+    <script>
+        var vm = new Vue({
+            el:"#box", 
+            data:{
+                isCreated:true,
+                datalist:[],
+                which:2,
+                user:[
+                    {name:"小王",age:24,bir:"2010-11-12"},
+                    {name:"小四",age:30,bir:"2009-12-31"},
+                    {name:"小李",age:23,bir:"2012-09-22"}
+                ],
+                isShow:true
+            },
+            methods: {
+                handleClick:function(){
+                    this.isCreated = !this.isCreated,
+                    this.datalist = ["111","222","333"]
+                },
+                showPane:function(ev){
+                    console.log(ev);// 事件对象
+                    vm.isShow =!vm.isShow;
+                }
+            }
+        })
+    </script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    <script>
+        // 需求:需要发送两次请求
+
+        /* 
+        Promise.all([
+            new Promise((resolve,reject)=>{
+                $ajax({
+                    url:"url1",
+                    success:function(data){
+                        resolve(data)
+                    }
+                })
+            }),
+            new Promise((resolve,reject)=>{
+                $ajax({
+                    url:"url2",
+                    success:function(data){
+                        resolve(data)
+                    }
+                })
+            })
+        ]).then(results =>{
+            results[0];// 保存的是请求1的数据
+            results[1];// 保存的是请求2的数据
+        })
+         */
+
+        // 模拟  all 里面是数组
+         Promise.all([
+             new Promise((resolve,reject)=>{
+                 setTimeout(()=>{
+                    resolve('results1');// 这里传的字符串
+                 },2000)
+             }),
+             new Promise((resolve,reject)=>{
+                 setTimeout(()=>{
+                    resolve("results2");
+                 },1000)
+             })
+         ]).then(results =>{
+             console.log(results);// 放在数组里面
+         })
+    </script>
+</html>

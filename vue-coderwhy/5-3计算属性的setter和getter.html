@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="app">
+            <h2>{{FullName}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                firstName:"勒布朗",
+                lastName:"詹姆斯"
+            },
+            computed: {
+              // 计算属性简写  一般只有get  所以{{FullName}}后面不用加小括号
+              /* FullName:function(){
+                return this.firstName + "  " + this.lastName;
+              }  */ 
+
+              FullName:{
+                  // get 计算属性一般没有set属性,只读属性
+                  get:function(){
+                      return this.firstName + "  " + this.lastName;
+                  },
+                  // set 设置  修改需要传值value 
+                  set:function(newValue){
+                      console.log(newValue);
+                      let name = newValue.split(" ");
+                      this.firstName = name[0];
+                      this.lastName = name[1];
+                  }
+              }
+
+            }
+            
+        })
+    </script>
+</html>

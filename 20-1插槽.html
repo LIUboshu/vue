@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<alert-com :html="content"></alert-com>
+			<alert-com1>
+				<!-- slot里面的内容变量只跟肤元素有关 -->
+				<p>小心我是陈博士,{{ content }}</p>
+			</alert-com1>
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.component('alert-com',{
+			props:['html'],
+			template:`
+				<div class="alert">
+					<h1>温馨提示</h1>
+					<div class="content">
+						{{ html }}
+					</div>
+				</div>
+			`
+		})
+		Vue.component('alert-com1',{
+			//<!-- slot里面的内容变量只跟肤元素有关 -->
+			template:`
+				<div class="alert">
+					<h1>温馨提示</h1>
+					<div class="content">
+						<slot></slot>
+					</div>
+				</div>
+			`
+		})
+		let app = new Vue({
+			el:"#app",
+			data:{
+				content:'小心熊出没'
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        
+    </style>
+    <body>
+        <div id="app">
+            <!-- 1.修饰符:lazy   加上lazy  回车后显示或者点击后显示-->
+            <input type="text" name="" id="" v-model.lazy="msg">
+            <h2>{{msg}}</h2>
+
+            <hr>
+
+            <!-- 2.修饰符:number   不加number修饰符 是 string类型    加上number是number类型-->
+            <input type="number" name="" id="" v-model.number="age">
+            <h2>{{age}}---{{typeof age}}</h2>
+
+            <hr>
+
+            <!-- 3.修饰符:trim  加上trim会去掉数据两边的空格   不加浏览器默认去除,但是数据不会去掉空格-->
+            <input type="text" name="" id="" v-model.trim="text">
+            <h2>{{text}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"你好啊",
+                age:0,
+                text:''
+            }
+        })
+    </script>
+</html>

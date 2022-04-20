@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        
+    </style>
+    <body>
+        <div id="app">
+            <!-- 
+                注册组件的基本步骤:
+                    1.创建组件构造器   (调用Vue.extend()方法创建组件构造器)
+                    2.注册组件      (调用Vue.component()方法 注册组件)
+                    3.使用组件      (在Vue实例的作用范围内只用组件)
+            -->
+
+            <!-- 3.使用组件 -->
+            <my-cpn></my-cpn>
+        </div>
+    </body>
+    <script>
+        //1.创建组件构造器对象
+        const cpnC = Vue.extend({
+            template:`
+                <div>
+                    <h2>我是标题</h2>
+                    <p>我是内容,哈哈哈</p>
+                    <p>我是内容,呵呵呵</p>
+                </div>
+            `
+        })
+        //2.注册组件
+        // Vue.component(组件的标签名,组件构造器);
+        Vue.component('my-cpn',cpnC);
+        
+        let app = new Vue({
+            el:"#app",
+            data:{
+                
+            }
+        })
+    </script>
+</html>

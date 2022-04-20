@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    <script>
+        // 编程范式:命令式编程/声明式编程
+        // 编程范式:面向对象编程(第一公民:对象)/函数式编程(第一公民:函数)
+    /* 
+        let arr = [50,23,400,60,80,10,500,100];
+
+        // 需求1: 找出所有小于100的数
+        let newArr = [];
+        for (const i of arr) {
+            if(i < 100){
+                newArr.push(i);
+            }
+        }
+        console.log(newArr);
+        // 需求2: 所有小100的数乘以2
+        let new2Arr = [];
+        for (const n of newArr) {
+            new2Arr.push(n*2);
+        }
+        console.log(new2Arr)
+        // 需求3: 所有乘以2的数相加
+        let new3Arr = 0;
+        for (const item of new2Arr) {
+            new3Arr += item
+        }
+        console.log(new3Arr)
+    */
+
+
+
+    /* 
+    let arr = [50,23,400,60,80,10,500,100];
+    // filter中的回调函数有一个要求:必须返回一个boolean值
+    // 返回true:当返回true时,函数内部会自动将这次回调的n加入到新的数组中
+    // 返回false:当返回false时,函数内部会过滤掉这次的n
+    let newNum = arr.filter(function(n){
+        return n < 100;
+    })
+    console.log(newNum);//[50, 23, 60, 80, 10]
+    // map函数的使用  map映射操作
+    let new2Num = newNum.map(function(n){
+        return n * 2;
+    })
+    console.log(new2Num);// [100, 46, 120, 160, 20]
+    // reduce函数的使用
+    // reduce作用对数组中所有的内容进行汇总
+    let new3Num = new2Num.reduce(function(preValue,n){
+        return preValue + n;
+    },0)
+    console.log(new3Num);// 446
+    */
+
+
+    /* let arr = [50,23,400,60,80,10,500,100];
+    let total = arr.filter(function(n){
+        return n < 100;
+    }).map(function(n){
+        return n * 2;
+    }).reduce(function(preValue,n){
+        return preValue + n;
+    },0)
+    console.log(total);// 446
+    */
+
+    let arr = [50,23,400,60,80,10,500,100];
+    let total = arr.filter(n => n < 100).map(n => n * 2).reduce((pre,n) => pre + n,0);
+    console.log(total);//446
+    </script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="item in stars">
+                    {{ item }}
+                </li>
+            </ul>
+            <hr>
+            <ul>
+                <li v-for="item,key in students">
+                    <h3>索引值:{{key}}--{{ item.name }}</h3>
+                    <p>年龄:{{ item.age }}--- 学校:{{ item.school }}</p>
+                </li>
+            </ul>
+            <hr>
+            <p>循环对象</p>
+            <ul>
+                <li v-for="(item,key,index) in students[0]">
+                   key值:{{ key }}--{{index}}--{{ item }}
+                </li>
+            </ul>
+            <hr>
+            <p>条件+ 循环渲染  偶数年龄学生渲染数来  先循环在判断</p>
+            <!-- 如果key绑定的是变量需要 + : -->
+            <!-- 如果key绑定的是字符串不加 : -->
+            <!-- key是用来作为一个标识 给vue用的  直接添加key绑定 -->
+            <ul>
+                <!-- 先循环在判断 -->
+                <!-- 当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级 -->
+                <!-- 建议尽可能在使用 v-for 时提供 key  ，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。 -->
+                <li v-for="(item,index) in students" v-if="item.age%2 == 0" :key="index">
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
+        <script>
+            var app= new Vue({
+                el:"#app",
+                data:{
+                    stars:['哈哈','拉拉','呵呵','嘿嘿'],
+                    students:[
+                        {
+                            name:"小明",
+                            age:16,
+                            school:"清华"
+                        },
+                        {
+                            name:"小黑",
+                            age:17,
+                            school:"北大"
+                        },
+                        {
+                            name:"小红",
+                            age:18,
+                            school:"北影"
+                        }
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>

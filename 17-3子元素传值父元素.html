@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <!-- 循环传值组件   :key="里面加字符串为了是独一无二的值"  key是拿不到的  key给vue用来计算的-->
+                <school v-for="(item,index) in schoolList" @cschool="changEvent" :key="'abc'+index" :index="index" :school-name="item"></school>
+            </ul>
+            <h2>选择的学校是:{{ chooseSchool }}</h2>
+        </div>
+    </body>
+    <script>
+        Vue.component("school",{
+            props: ['schoolName','index'],
+            template:`<li>
+                    <h3>{{index}}--学校:{{ schoolName }}</h3>
+                    <button @click="clickEvent(schoolName)">选择</button>
+                </li>`,
+            methods: {
+                clickEvent:function(schoolName){
+                    console.log(schoolName);
+                    // 想要将元素的数据传递给父元素,需要自定义触发事件,实现数据的传值
+                    // 触发一个事件名称叫做cschool的事件
+                    this.$emit('cschool',schoolName);// 事件名称cschool  后面可以定义数据传值数据
+                }
+            }
+        })
+        let app = new Vue({
+            el:"#app",
+            data:{
+                schoolList:[
+                    "小学","中学","高中","大学"
+                ],
+                chooseSchool:''
+            },
+            methods: {
+                changEvent:function(data){// 这里data接收的数据是this.$emit('cschool',schoolName);  schoolNmae的数据
+                    console.log(data);
+                    console.log("触发学校选择事件");
+                    // 拿到数据就可以修改
+                    this.chooseSchool = data
+                }
+            }
+        })
+    </script>
+</html>

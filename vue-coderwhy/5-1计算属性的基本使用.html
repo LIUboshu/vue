@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="app">
+            <h2>{{firstName + " " + lastName}}</h2>
+            <h2>{{firstName}} {{lastName}}</h2>
+            <h2>{{getName()}}</h2>
+            <!-- 计算属性 不需要加小括号()-->
+            <h2>{{FullName}}</h2>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                firstName:"勒布朗",
+                lastName:"詹姆斯"
+            },
+            computed: {
+                // 计算属性,当我们的数据要进行某种变化之后,进行显示的时候,可以在计算属性里面顶一个属性,并返回变化之后的数据
+              FullName:function(){
+                return this.firstName + "  " + this.lastName;
+              }  
+            },
+            methods: {
+                getName(){
+                    return this.firstName + "  " + this.lastName;
+                }
+            }
+            
+        })
+    </script>
+</html>

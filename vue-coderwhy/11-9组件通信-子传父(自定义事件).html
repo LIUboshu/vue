@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        /* 
+            什么时候需要自定义事件?
+                当子组件需要像父组件传递数据时,就要用到自定义事件
+                之前v-on不仅仅可以监听dom事件,也可以用于组件间的自定义事件
+            
+            自定义事件的流程
+                在子组件中,通过$emit()来触发事件
+                在父组件中,通过v-on来监听子组件事件
+        
+         */
+    </style>
+    <body>
+        <!-- 父组件模板 -->
+        <div id="app">
+            <!-- 父组件监听自定义事件 -->
+            <cpn @item-click="cpnClick"></cpn>
+        </div>
+    </body>
+    <!-- 子组件模板 -->
+    <template id="cpnC">
+        <div>
+            <ul>
+                <li v-for="(item,index) in list" @click="btnClick(item)">{{item.name}}</li>
+            </ul>
+        </div>
+    </template>
+    <script>
+        // 1. 子组件
+        let cpn = {
+            template:"#cpnC",
+            data () {
+                return {
+                    list:[
+                        {id:"aaa",name:"手机"},
+                        {id:"bbb",name:"电脑"},
+                        {id:"ccc",name:"厨具"},
+                        {id:"ddd",name:"家具"},
+                        {id:"eee",name:"电器"}
+                    ] 
+                }
+            },
+            methods: {
+                btnClick(item){
+                    // console.log(item)
+
+                    //发射    发射事件的名称   需要传参数
+                    // 发射事件后  父组件需要接收事件
+                    //  这里的事件名称  不能写驼峰
+                    this.$emit("item-click",item)
+                    // 子组件向父组件传东西,通过自定义事件
+                }
+            }
+        }
+        // 2.父组件
+        let app = new Vue({
+            el:"#app",
+            data:{
+                
+            },
+            components: {
+                cpn
+            },
+            methods: {
+                // 这里的item 系统默认传过来
+                cpnClick(item){
+                    console.log(item)
+                }
+            }
+        })
+    </script>
+</html> 

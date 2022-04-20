@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{msg}}
+            <ul>
+                <li v-for="(item,index) in movies" :key="index">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"nihao",
+                movies:[
+                    '西游记',
+                    '三国演义',
+                    '红楼梦',
+                    '水浒传'
+                ]
+            }
+        })
+    </script>
+</html>

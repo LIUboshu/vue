@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+    </head>
+    <style>
+        
+    </style>
+    <body>
+        <div id="app">
+            <cpn :c-info="info" :c-msg="msg"></cpn>
+        </div>
+    </body>
+    <template id="cpnC">
+        <div>
+            <ul>
+                <li v-for="(item,index) in cInfo">{{item}}</li>
+            </ul>
+            <p>{{cMsg}}</p>
+        </div>
+    </template>
+    <script>
+        let cpn = {
+            template:"#cpnC",
+            props: {
+                cInfo:{
+                    type:Object,
+                    default(){
+                        return{
+                            name:"alibaba"
+                        }
+                    }
+                },
+                cMsg:{
+                    type:String,
+                    default:"aaaaaa"
+                }
+                
+            }
+        }
+        let app = new Vue({
+            el:"#app",
+            data :{
+                info:{
+                    name:"奥特曼",
+                    age:18,
+                    height:1.88
+                },
+                msg:"你是我的小苹果"
+            },
+            components: {
+                cpn
+            }
+        })
+    </script>
+</html>

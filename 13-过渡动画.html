@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.content{
+				width: 200px;
+				height: 200px;
+				background-color: #00BFFF;
+			}
+			
+			.fade-enter-active, .fade-leave-active {
+			  transition: opacity 5s;
+			}
+			.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+			  opacity: 0;
+			}
+			/*enter 进入  leave 离开 */
+			.slide-enter-active, .slide-leave-active {
+			  transition: all 5s;
+			}
+			.slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+			  transform: translateX(100px);
+			  opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- Vue 提供了 transition 的封装组件 -->
+			<!-- 这里的name="fade"  要和css中的(过渡的类名).fade-enter-active, .fade-leave-active      .fade-enter, .fade-leave-to    fade保持一致-->
+			<!-- 属性中name会跟框架追加的类名保持一致 -->
+			<transition name="fade">
+				<div v-if="isShow" class="content"></div>
+			</transition>
+			<transition name="slide">
+				<div v-if="isShow" class="content"></div>
+			</transition>
+			<button @click="toggleEvent" type="button">切换内容</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				isShow:true,
+			},
+			methods:{
+				toggleEvent:function(){
+					this.isShow = !this.isShow
+				}
+			}
+		})
+	</script>
+</html>

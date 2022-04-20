@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./vue.js"></script>
+        <style>
+            .active{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <!-- btnClass(index,item)  传入的参数是什么得到的就是什么参数值 -->
+				<!-- 如果还想得到事件对象 event   传入$event -->
+                <!-- :class="{active:currentIndex === index}"  判断是否绑定一个active -->
+                <li v-for="(item,index) in movies" :class="{active:currentIndex === index}" @click="btnClass(item,index,$event)" :key="index">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"nihao",
+                movies:[
+                    '西游记',
+                    '三国演义',
+                    '红楼梦',
+                    '水浒传'
+                ],
+                currentIndex:0 //搞一个变量  记录状态 默认谁是红色
+            },
+            methods: {
+                btnClass:function(item,index,event){
+                    console.log(item);
+                    console.log(index);
+                    console.log(event);
+                    this.currentIndex = index;
+                }
+            }
+        })
+    </script>
+</html>

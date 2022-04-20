@@ -1,0 +1,66 @@
+.bgColor {
+  background-color: #ff6700;
+}
+.button {
+  background-color: #ff6700;
+}
+.xk {
+  width: 400px;
+  height: 100px;
+  border: 1px solid #ccc;
+}
+.box {
+  width: 400px;
+  height: 100px;
+  border: 1px solid #ccc;
+  background-color: #ff6700;
+}
+.redLcButton {
+  width: 400px;
+  height: 100px;
+  border: 1px solid #ccc;
+  background-color: #ff6700;
+  text-align: center;
+  line-height: 100px;
+}
+.ccbutton {
+  width: 400px;
+  height: 100px;
+  border: 1px solid #ccc;
+  background-color: green;
+}
+.small {
+  width: 200px;
+  height: 200px;
+  background-color: #ff6700;
+}
+.todo {
+  width: 100px;
+  height: 100px;
+}
+.todo h1 {
+  width: 10px;
+  height: 10px;
+}
+.todo .item {
+  line-height: 10px;
+  height: 10px;
+}
+.todo .item img {
+  width: 5px;
+  height: 5px;
+}
+.lcbox {
+  border: 10px solid #ccc;
+}
+.bgbox {
+  border: 20px dash #ccc;
+}
+/* 注释的内容  编译后显示*/
+.bgbox {
+  border: 20px dash #ccc !important;
+}
+.bgbox {
+  border: 20px dash #ccc;
+  background: @main-color;
+}

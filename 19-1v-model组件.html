@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 监听事件@child-input 触发事件changeEvent默认传值 -->
+			
+			<!-- 两种方法等同 -->
+			<input-com :user="username" @child-input="changeEvent"></input-com>
+			<input-com :user="username" @child-input="username = $event"></input-com>
+			<h3>{{ username }}</h3>
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.component('input-com',{
+			props:['user'],
+			// @input 绑定输入事件  触发事件child-input
+			template:`<input type="text" @input="$emit('child-input',$event.target.value)" :value="user"/>`
+		})
+		let app = new Vue({
+			el:"#app",
+			data:{
+				username:''
+			},
+			methods:{
+				// 调用
+				changeEvent:function(data){
+					this.username = data;
+				}
+			}
+		})
+	</script>
+</html>
